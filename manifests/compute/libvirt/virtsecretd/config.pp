@@ -5,7 +5,7 @@
 # === Parameters
 #
 # [*virtsecretd_config*]
-#   (optional) Allow configuration of arbitrary libvirtd configurations.
+#   (optional) Allow configuration of arbitrary virtsecretd configurations.
 #   The value is an hash of virtsecretd_config resources. Example:
 #   { 'foo' => { value => 'fooValue'},
 #     'bar' => { value => 'barValue'}

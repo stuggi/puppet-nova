@@ -1,15 +1,8 @@
-# == Class: nova::compute::libvirt::virtproxyd
+# == Class: nova::compute::libvirt::virtstoraged
 #
-# virtproxyd configuration
+# virtstoraged configuration
 #
 # === Parameters:
-#
-# [*tls_priority*]
-#   (optional) Override the compile time default TLS priority string. The
-#   default is usually "NORMAL" unless overridden at build time.
-#   Only set this if it is desired for libvirt to deviate from
-#   the global default settings.
-#   Defaults to undef
 #
 # [*log_level*]
 #   Defines a log level to filter log outputs.
@@ -39,96 +32,84 @@
 #   (optional) A timeout for openvswitch calls made by libvirt
 #   Defaults to undef
 #
-class nova::compute::libvirt::virtproxyd (
-  $tls_priority      = undef,
+class nova::compute::libvirt::virtstoraged (
   $log_level         = undef,
   $log_filters       = undef,
   $log_outputs       = undef,
   $max_clients       = undef,
   $admin_max_clients = undef,
   $ovs_timeout       = undef,
-
 ) {
 
   include nova::deps
   require nova::compute::libvirt
 
-  if $tls_priority {
-    virtproxyd_config {
-      'tls_priority': value => "\"${tls_priority}\"";
-    }
-  } else {
-    virtproxyd_config {
-      'tls_priority': ensure => 'absent';
-    }
-  }
-
   if $log_level {
-    virtproxyd_config {
+    virtstoraged_config {
       'log_level': value => $log_level;
     }
   }
   else {
-    virtproxyd_config {
+    virtstoraged_config {
       'log_level': ensure => 'absent';
     }
   }
 
   if $log_filters {
-    virtproxyd_config {
+    virtstoraged_config {
       'log_filters': value => "\"${log_filters}\"";
     }
   }
   else {
-    virtproxyd_config {
+    virtstoraged_config {
       'log_filters': ensure => 'absent';
     }
   }
 
   if $log_outputs {
-    virtproxyd_config {
+    virtstoraged_config {
       'log_outputs': value => "\"${log_outputs}\"";
     }
   }
   else {
-    virtproxyd_config {
+    virtstoraged_config {
       'log_outputs': ensure => 'absent';
     }
   }
 
   if $max_clients {
-    virtproxyd_config {
+    virtstoraged_config {
       'max_clients': value => $max_clients;
     }
   }
   else {
-    virtproxyd_config {
+    virtstoraged_config {
       'max_clients': ensure => 'absent';
     }
   }
 
   if $admin_max_clients {
-    virtproxyd_config {
+    virtstoraged_config {
       'admin_max_clients': value => $admin_max_clients;
     }
   }
   else {
-    virtproxyd_config {
+    virtstoraged_config {
       'admin_max_clients': ensure => 'absent';
     }
   }
 
   if $ovs_timeout {
-    virtproxyd_config {
+    virtstoraged_config {
       'ovs_timeout': value => $ovs_timeout;
     }
   } else {
-    virtproxyd_config {
+    virtstoraged_config {
       'ovs_timeout': ensure => 'absent';
     }
   }
 
   Anchor['nova::config::begin']
-  -> Virtproxyd_config<||>
+  -> Virtstoraged_config<||>
   -> Anchor['nova::config::end']
 }

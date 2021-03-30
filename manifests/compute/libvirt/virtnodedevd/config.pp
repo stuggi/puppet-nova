@@ -5,7 +5,7 @@
 # === Parameters
 #
 # [*virtnodedevd_config*]
-#   (optional) Allow configuration of arbitrary libvirtd configurations.
+#   (optional) Allow configuration of arbitrary virtnodedevd configurations.
 #   The value is an hash of virtnodedevd_config resources. Example:
 #   { 'foo' => { value => 'fooValue'},
 #     'bar' => { value => 'barValue'}

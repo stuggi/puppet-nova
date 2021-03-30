@@ -5,7 +5,7 @@
 # === Parameters
 #
 # [*virtproxyd_config*]
-#   (optional) Allow configuration of arbitrary libvirtd configurations.
+#   (optional) Allow configuration of arbitrary virtproxyd configurations.
 #   The value is an hash of virtproxyd_config resources. Example:
 #   { 'foo' => { value => 'fooValue'},
 #     'bar' => { value => 'barValue'}
